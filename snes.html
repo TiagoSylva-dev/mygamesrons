@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>Emulador GBA</title>
+    <title>Emulador SNES</title>
     <style>
         body, html { margin: 0; padding: 0; width: 100vw; height: 100vh; background-color: #000; overflow: hidden; }
         #game { width: 100%; height: 100%; }
@@ -12,30 +12,27 @@
 <body>
     <div id="game"></div>
     <script>
-        // Pega o nome do jogo no link
         const urlParams = new URLSearchParams(window.location.search);
         const romName = urlParams.get('rom');
 
         if (romName) {
-            window.EJS_player = '#game';
-            window.EJS_core = 'gba'; // Motor do Game Boy Advance
-            window.EJS_gameUrl = `roms/gba/${romName}.zip`; // Pasta do GBA
-            window.EJS_pathtodata = 'https://raw.githack.com/EmulatorJS/EmulatorJS/main/data/';
+            EJS_player = '#game';
+            EJS_core = 'snes'; 
+            EJS_gameUrl = 'roms/snes/' + romName + '.zip'; // Confirme se a pasta no GitHub é exatamente roms/snes/
+            EJS_pathtodata = 'https://cdn.jsdelivr.net/gh/EmulatorJS/EmulatorJS@main/data/'; // SERVIDOR CORRIGIDO
             
-            // Inicia direto sem o botão azul
-            window.EJS_startOnLoaded = true; 
-            window.EJS_Buttons = true; // Botões para celular
+            EJS_startOnLoaded = true; 
+            EJS_Buttons = true; 
             
-            // Sistema de Save (cria um save diferente para cada jogo)
-            window.EJS_onSaveState = function(state) {
-                localStorage.setItem('save_gba_' + romName, state);
+            EJS_onSaveState = function(state) {
+                localStorage.setItem('save_snes_' + romName, state);
             };
-            window.EJS_onLoadState = function() {
-                return localStorage.getItem('save_gba_' + romName);
+            EJS_onLoadState = function() {
+                return localStorage.getItem('save_snes_' + romName);
             };
 
-            const script = document.createElement('script');
-            script.src = 'https://raw.githack.com/EmulatorJS/EmulatorJS/main/data/loader.js';
+            let script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/gh/EmulatorJS/EmulatorJS@main/data/loader.js'; // SERVIDOR CORRIGIDO
             document.body.appendChild(script);
         } else {
             document.getElementById('game').innerHTML = '<h3 style="color:white; text-align:center; font-family:sans-serif; margin-top:50px;">Erro: Faltou o nome do jogo no link!</h3>';
