@@ -23,25 +23,16 @@
     <div id="game"></div>
 
     <script>
-        // O ID do seu novo arquivo .zip no Google Drive
-        const DRIVE_ID = '1tCF-RZ2iJVjLIPq07mmwvgqKmOoAOOUp';
-        
-        // Formato para forçar o download direto
-        const directDriveUrl = `https://drive.usercontent.google.com/download?id=${DRIVE_ID}&confirm=t`;
-
-        // Configurações Oficiais do EmulatorJS
         window.EJS_player = '#game';
         window.EJS_core = 'psx';
         window.EJS_startOnLoaded = true;
         window.EJS_Buttons = true;
         
-        // Caminho oficial dos arquivos do emulador (mais atualizado e estável)
         window.EJS_pathtodata = 'https://cdn.emulatorjs.org/latest/data/';
 
-        // Puxando o jogo do seu Google Drive
-        window.EJS_gameUrl = directDriveUrl;
+        // COLE AQUI O LINK DO GITHUB RELEASES QUE VOCÊ COPIOU:
+        window.EJS_gameUrl = 'https://github.com/TiagoSylva-dev/mygamesrons/releases/download/SUA_TAG/SEU_ARQUIVO.zip';
 
-        // Injeta o script do emulador na página
         let script = document.createElement('script');
         script.src = 'https://cdn.emulatorjs.org/latest/data/loader.js';
         document.body.appendChild(script);
