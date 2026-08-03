@@ -26,8 +26,8 @@
         // ID do seu arquivo no Google Drive
         const DRIVE_ID = '1X883lmhNlkRIQlHGsDEjJAOSq0_xPvKd';
         
-        // Link de download direto com confirmação para ignorar a tela de aviso de vírus do Google Drive
-        const directDriveUrl = `https://drive.google.com/uc?export=download&confirm=t&id=${DRIVE_ID}`;
+        // Novo formato de link de download direto do Google Drive (resolve o erro 404 de download)
+        const directDriveUrl = `https://drive.usercontent.google.com/download?id=${DRIVE_ID}&confirm=t`;
 
         // Configurações do EmulatorJS para PS1
         window.EJS_player = '#game';
