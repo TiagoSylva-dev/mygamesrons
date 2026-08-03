@@ -3,47 +3,45 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>Emulador PlayStation 1</title>
+    <title>Emulador PS1</title>
     <style>
-        body, html { margin: 0; padding: 0; width: 100vw; height: 100vh; background-color: #000; overflow: hidden; }
-        #game { width: 100%; height: 100%; }
+        body, html { 
+            margin: 0; 
+            padding: 0; 
+            width: 100vw; 
+            height: 100vh; 
+            background-color: #000; 
+            overflow: hidden; 
+        }
+        #game { 
+            width: 100%; 
+            height: 100%; 
+        }
     </style>
 </head>
 <body>
     <div id="game"></div>
+
     <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const romName = urlParams.get('rom');
+        // ID do seu arquivo no Google Drive
+        const DRIVE_ID = '1X883lmhNlkRIQlHGsDEjJAOSq0_xPvKd';
+        
+        // Link de download direto com confirmação para ignorar a tela de aviso de vírus do Google Drive
+        const directDriveUrl = `https://drive.google.com/uc?export=download&confirm=t&id=${DRIVE_ID}`;
 
-        if (romName) {
-            EJS_player = '#game';
-            
-            // Núcleo alterado para PlayStation 1 (psx)
-            EJS_core = 'psx'; 
-            
-            // Pasta ajustada para roms/ps1/ 
-            // Dica: Para PS1, formatos como .chd ou .zip (contendo .bin e .cue) são os mais comuns
-            EJS_gameUrl = 'roms/ps1/' + romName + '.zip'; 
-            
-            EJS_pathtodata = 'https://cdn.jsdelivr.net/gh/EmulatorJS/EmulatorJS@main/data/'; 
-            
-            EJS_startOnLoaded = true; 
-            EJS_Buttons = true; 
-            
-            // Chaves de save atualizadas para não misturar com o SNES
-            EJS_onSaveState = function(state) {
-                localStorage.setItem('save_ps1_' + romName, state);
-            };
-            EJS_onLoadState = function() {
-                return localStorage.getItem('save_ps1_' + romName);
-            };
+        // Configurações do EmulatorJS para PS1
+        window.EJS_player = '#game';
+        window.EJS_core = 'psx';
+        window.EJS_gameUrl = directDriveUrl;
+        
+        window.EJS_pathtodata = 'https://cdn.jsdelivr.net/gh/EmulatorJS/EmulatorJS@main/data/';
+        window.EJS_startOnLoaded = true;
+        window.EJS_Buttons = true;
 
-            let script = document.createElement('script');
-            script.src = 'https://cdn.jsdelivr.net/gh/EmulatorJS/EmulatorJS@main/data/loader.js'; 
-            document.body.appendChild(script);
-        } else {
-            document.getElementById('game').innerHTML = '<h3 style="color:white; text-align:center; font-family:sans-serif; margin-top:50px;">Erro: Faltou o nome do jogo no link!</h3>';
-        }
+        // Injeta o script do emulador
+        let script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/gh/EmulatorJS/EmulatorJS@main/data/loader.js';
+        document.body.appendChild(script);
     </script>
 </body>
 </html>
