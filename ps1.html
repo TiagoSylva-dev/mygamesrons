@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>Emulador PS1</title>
+    <title>Emulador PS1 - Castlevania SOTN</title>
     <style>
         body, html { 
             margin: 0; 
@@ -28,11 +28,13 @@
         window.EJS_startOnLoaded = true;
         window.EJS_Buttons = true;
         
+        // Caminho oficial dos arquivos do emulador
         window.EJS_pathtodata = 'https://cdn.emulatorjs.org/latest/data/';
 
-        // COLE AQUI O LINK DO GITHUB RELEASES QUE VOCÊ COPIOU:
-        window.EJS_gameUrl = 'https://github.com/TiagoSylva-dev/mygamesrons/releases/download/SUA_TAG/SEU_ARQUIVO.zip';
+        // O link direto e sem bloqueios do seu GitHub Releases
+        window.EJS_gameUrl = 'https://github.com/TiagoSylva-dev/mygamesrons/releases/download/v1.0/castlevaniasymphonyofthenight.zip';
 
+        // Injeta o script do emulador na página
         let script = document.createElement('script');
         script.src = 'https://cdn.emulatorjs.org/latest/data/loader.js';
         document.body.appendChild(script);
